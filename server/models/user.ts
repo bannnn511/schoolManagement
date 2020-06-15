@@ -1,22 +1,6 @@
 /* eslint-disable no-console */
 module.exports = (sequelize, DataTypes, Model) => {
-  class User extends Model {
-    public title: string;
-
-    public code: number;
-
-    public phone: number;
-
-    public address: string;
-
-    public createdBy: string;
-
-    public updatedBy: string;
-
-    public status: string;
-
-    public isAdmin: boolean;
-  }
+  class User extends Model {}
 
   User.init({
     title: {
@@ -45,23 +29,18 @@ module.exports = (sequelize, DataTypes, Model) => {
       allowNull: true,
     },
     status: {
-      type: DataTypes.STRING,
+      type: DataTypes.BOOLEAN,
       allowNull: true,
     },
     isAdmin: {
-      type: DataTypes.STRING,
+      type: DataTypes.BOOLEAN,
       allowNull: true,
     },
   }, {
     sequelize,
-    modelNameL: 'User',
+    modelName: 'User',
     timestamps: true,
   });
 
-  User.associate = (models) => {
-    User.belongsTo(models.Class, {
-      foreignKey: 'code',
-    });
-  };
-  console.log(User === sequelize.moels.User);
+  console.log(User === sequelize.models.User);
 };

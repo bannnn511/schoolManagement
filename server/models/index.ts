@@ -1,10 +1,12 @@
+/* eslint-disable no-console */
+
 /* eslint-disable import/no-dynamic-require */
 const fs = require('fs');
 const path = require('path');
 const { Sequelize, Model, DataTypes } = require('sequelize');
 
 const basename = path.basename(__filename);
-const env = process.env.NODE_ENV || 'development';
+const env = 'test' || 'development';
 const config = require(path.join(__dirname, '/../config/config.json'))[env];
 const db:any = <any>{};
 
@@ -14,6 +16,14 @@ if (config.use_env_variable) {
 } else {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
+
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log('Connection has been established successfully');
+  }).catch((err) => {
+    console.log('Unable to connect to database', err);
+  });
 
 fs
   .readdirSync(__dirname)
@@ -34,7 +44,7 @@ db.Sequelize = Sequelize;
 
 db.users = require('./user.ts')(sequelize, DataTypes, Model);
 db.class = require('./class.ts')(sequelize, DataTypes, Model);
-db.student = require('./class.ts')(sequelize, DataTypes, Model, db.users);
+db.student = require('./student.ts')(sequelize, DataTypes, Model);
 
 // Relations
 db.class.hasMany(db.student);

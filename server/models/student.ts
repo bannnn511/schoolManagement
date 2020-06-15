@@ -1,20 +1,46 @@
 /* eslint-disable no-console */
-module.exports = (sequelize, DataTypes, Model, User) => {
-  class Student extends User {
-    public score: number;
-  }
+module.exports = (sequelize, DataTypes, Model) => {
+  class Student extends Model {}
 
   Student.init({
-    score: {
-      types: DataTypes.INTEGER,
+    title: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
+    code: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+    },
+    phone: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    address: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    score: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    createdBy: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    updatedBy: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    status: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+    },
+  }, {
+    sequelize,
+    modelName: 'Student',
+    timestamps: true,
   });
 
-  Student.associate = (models) => {
-    Student.belongsTo(models.Class, {
-      foreignKey: 'code',
-    });
-  };
-  console.log(Student === sequelize.moels.Student);
+  console.log(Student === sequelize.models.Student);
 };

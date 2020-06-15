@@ -2,12 +2,12 @@
 /* eslint-disable arrow-body-style */
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Classes', {
+    return queryInterface.createTable('Class', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGE,
+        type: Sequelize.INTEGER,
       },
       code: {
         type: Sequelize.INTEGER,
@@ -38,6 +38,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Classes');
+    return queryInterface.dropTable('Class');
   },
 };

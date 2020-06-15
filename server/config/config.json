@@ -1,6 +1,6 @@
 {
   "development": {
-    "username": "root",
+    "username": "apple",
     "password": null,
     "database": "school-dev",
     "host": "127.0.0.1",
@@ -8,9 +8,9 @@
     "operatorsAliases": false
   },
   "test": {
-    "username": "root",
+    "username": "apple",
     "password": null,
-    "database": "database_test",
+    "database": "school-dev",
     "host": "127.0.0.1",
     "dialect": "postgres",
     "operatorsAliases": false

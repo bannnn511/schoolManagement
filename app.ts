@@ -1,10 +1,13 @@
+/* eslint-disable no-console */
 const express = require('express');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
+require('dotenv');
 
 const app = express();
 
 export {};
+
 // log request to the console
 app.use(logger('dev'));
 

@@ -1,18 +1,6 @@
 /* eslint-disable no-console */
 module.exports = (sequelize, DataTypes, Model) => {
-  class Class extends Model {
-    public code: number;
-
-    public title: string;
-
-    public size: number;
-
-    public createdBy: string;
-
-    public updatedBy: string;
-
-    public status: String;
-  }
+  class Class extends Model {}
 
   Class.init({
     code: {
@@ -38,16 +26,14 @@ module.exports = (sequelize, DataTypes, Model) => {
       allowNull: false,
     },
     status: {
-      type: DataTypes.BOOLEANS,
+      type: DataTypes.BOOLEAN,
     },
+  }, {
+    sequelize,
+    modelName: 'Class',
+    timestamps: true,
+    freeTableName: true,
   });
 
-  console.log(Class === sequelize.moels.Class);
-
-  Class.associate = (models) => {
-    Class.hasMany(models.Student, {
-      foreignKey: 'code',
-    });
-  };
-  return Class;
+  console.log(Class === sequelize.models.Class);
 };
