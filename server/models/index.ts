@@ -1,14 +1,14 @@
 /* eslint-disable no-console */
-
 /* eslint-disable import/no-dynamic-require */
+
 const fs = require('fs');
 const path = require('path');
 const { Sequelize, Model, DataTypes } = require('sequelize');
 
 const basename = path.basename(__filename);
-const env = 'test' || 'development';
+const env = process.env.NODE_ENV || 'development';
 const config = require(path.join(__dirname, '/../config/config.json'))[env];
-const db:any = <any>{};
+const db: any = <any>{};
 
 let sequelize;
 if (config.use_env_variable) {
@@ -42,12 +42,12 @@ Object.keys(db).forEach((modelName) => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-db.users = require('./user.ts')(sequelize, DataTypes, Model);
-db.class = require('./class.ts')(sequelize, DataTypes, Model);
-db.student = require('./student.ts')(sequelize, DataTypes, Model);
+db.Users = require('./user.ts')(sequelize, DataTypes, Model);
+db.Class = require('./class.ts')(sequelize, DataTypes, Model);
+db.Student = require('./student.ts')(sequelize, DataTypes, Model);
 
 // Relations
-db.class.hasMany(db.student);
-db.student.belongsTo(db.class);
+// db.class.hasMany(db.student);
+// db.student.belongsTo(db.class);
 
 module.exports = db;

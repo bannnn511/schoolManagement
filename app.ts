@@ -2,6 +2,7 @@
 const express = require('express');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
+const errorHandler = require('./middlewares/error.ts');
 require('dotenv');
 
 const app = express();
@@ -21,5 +22,8 @@ require('./server/routes.ts')(app);
 app.get('*', (req, res) => {
   res.status(200).send({ message: 'Welcome' });
 });
+
+// ERROR HANDLER
+app.use(errorHandler);
 
 module.exports = app;

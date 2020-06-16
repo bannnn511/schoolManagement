@@ -25,12 +25,16 @@ module.exports = (sequelize, DataTypes, Model) => {
       allowNull: true,
     },
     createdBy: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: true,
     },
     updatedBy: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: true,
+    },
+    classID: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
     },
     status: {
       type: DataTypes.BOOLEAN,
@@ -41,6 +45,12 @@ module.exports = (sequelize, DataTypes, Model) => {
     modelName: 'Student',
     timestamps: true,
   });
+
+  Student.associate = (models) => {
+    Student.belongsTo(models.Class, {
+      foreignKey: 'code',
+    });
+  };
 
   console.log(Student === sequelize.models.Student);
 };

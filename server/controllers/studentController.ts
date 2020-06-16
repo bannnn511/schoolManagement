@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-const Student = require('../models/index.ts').student;
+const { Student } = require('../models/index.ts');
 
 module.exports = {
   create(req, res) {

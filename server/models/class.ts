@@ -3,9 +3,8 @@ module.exports = (sequelize, DataTypes, Model) => {
   class Class extends Model {}
 
   Class.init({
-    code: {
+    id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
       primaryKey: true,
       autoIncrement: true,
     },
@@ -18,22 +17,30 @@ module.exports = (sequelize, DataTypes, Model) => {
       allowNull: false,
     },
     createdBy: {
-      type: DataTypes.STRING,
-      allowNull: false,
+      type: DataTypes.INTEGER,
+      allowNull: true,
     },
     updatedBy: {
-      type: DataTypes.STRING,
-      allowNull: false,
+      type: DataTypes.INTEGER,
+      allowNull: true,
     },
     status: {
       type: DataTypes.BOOLEAN,
+      allowNull: true,
     },
   }, {
     sequelize,
-    modelName: 'Class',
+    modelName: 'Classes',
     timestamps: true,
     freeTableName: true,
   });
 
+  Class.associate = (models) => {
+    Class.hasMany(models.Student, {
+      foreignKey: 'code',
+      as: 'Student',
+    });
+  };
   console.log(Class === sequelize.models.Class);
+  return Class;
 };
