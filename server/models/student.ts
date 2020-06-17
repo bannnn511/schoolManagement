@@ -53,4 +53,6 @@ module.exports = (sequelize, DataTypes, Model) => {
   };
 
   console.log(Student === sequelize.models.Student);
+
+  return Student;
 };

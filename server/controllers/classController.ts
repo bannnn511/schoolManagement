@@ -16,9 +16,9 @@ module.exports = {
         status: req.body.status,
       });
 
-      newClass.at('', '', 0, '', '', true).compact().first();
+      // newClass.at('', '', 0, '', '', true).compact().first();
 
-      return res.status(201).send('newClass');
+      return res.status(201).send(newClass);
     } catch (error) {
       console.log(error);
       return res.status(400).send(error);

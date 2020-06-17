@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes, Model) => {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
+      allowNull: false,
     },
     title: {
       type: DataTypes.STRING,
@@ -30,7 +31,8 @@ module.exports = (sequelize, DataTypes, Model) => {
     },
   }, {
     sequelize,
-    modelName: 'Classes',
+    modelName: 'Class',
+    tableName: 'Class',
     timestamps: true,
     freeTableName: true,
   });
